@@ -1,7 +1,7 @@
 @echo off
 
 :: App package name, your resources will build under it, like: sample.app.R.image.xxx / sample.app.R.layout.xxx
-set packageName="com.linfaxn.gankwebapp"
+set packageName="com.linfaxin.gankwebapp"
 
 :: sdk path relate with gen/R/xxx.ts
 set dReference="../../androidui-sdk/android-ui.d.ts"

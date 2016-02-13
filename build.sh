@@ -1,5 +1,5 @@
 # App package name, your resources will build under it, like: sample.app.R.image.xxx / sample.app.R.layout.xxx
-packageName="com.linfaxn.gankwebapp";
+packageName="com.linfaxin.gankwebapp";
 
 # sdk path relate with gen/R/xxx.ts
 dReference="../../androidui-sdk/android-ui.d.ts";

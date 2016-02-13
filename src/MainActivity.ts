@@ -2,7 +2,7 @@
 ///<reference path="../androidui-sdk/android-ui.d.ts"/>
 ///<reference path="../gen/R/layout.ts"/>
 
-module com.linfaxn.gankwebapp {
+module com.linfaxin.gankwebapp {
     import Activity = android.app.Activity;
     import ActionBarActivity = android.app.ActionBarActivity;
     import TextView = android.widget.TextView;
@@ -16,7 +16,7 @@ module com.linfaxn.gankwebapp {
     import BaseAdapter = android.widget.BaseAdapter;
     import ListView = android.widget.ListView;
     import PullRefreshLoadLayout = androidui.widget.PullRefreshLoadLayout;
-    import R = com.linfaxn.gankwebapp.R;
+    import R = com.linfaxin.gankwebapp.R;
     import Toast = android.widget.Toast;
     import ImageView = android.widget.ImageView;
 
@@ -25,6 +25,7 @@ module com.linfaxn.gankwebapp {
         static ListLoadCount = 20;
 
         private prll:PullRefreshLoadLayout;
+        private listView:ListView;
         private adapter:MyListAdapter;
 
         private nextLoadingPage=1;
@@ -35,9 +36,9 @@ module com.linfaxn.gankwebapp {
             this.setTitle('首页');
             this.setContentView(R.layout.activity_main);
 
-            let listView = <ListView>this.findViewById('listView');
+            this.listView = <ListView>this.findViewById('listView');
             this.adapter = new MyListAdapter();
-            listView.setAdapter(this.adapter);
+            this.listView.setAdapter(this.adapter);
 
             this.initAllDayTitle().then(()=>{
                 this.initPRLL();
@@ -75,6 +76,7 @@ module com.linfaxn.gankwebapp {
                         activity.adapter.data = items;
                         activity.adapter.notifyDataSetChanged();
                         activity.prll.setHeaderState(PullRefreshLoadLayout.State_Header_Normal);
+                        activity.prll.setFooterState(PullRefreshLoadLayout.State_Footer_Normal);//reset footer
                     }, ()=>{
                         activity.prll.setHeaderState(PullRefreshLoadLayout.State_Header_RefreshFail);
                     });

@@ -1,4 +1,4 @@
-module com.linfaxn.gankwebapp.R {
+module com.linfaxin.gankwebapp.R {
     export var id = {
         "prll": "prll",
         "listView": "listView",

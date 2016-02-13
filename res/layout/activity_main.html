@@ -1,0 +1,56 @@
+<android.support.v4.widget.DrawerLayout>
+    <androidui.widget.PullRefreshLoadLayout
+            android:id="prll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ListView android:id="listView">
+        </ListView>
+    </androidui.widget.PullRefreshLoadLayout>
+
+    <!--侧滑内容-->
+    <LinearLayout
+            android:layout_gravity="left"
+            android:background="white"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="240dp"
+            android:clickable="true"
+            android:layout_height="match_parent">
+        <TextView
+                android:layout_marginTop="60dp"
+                android:text="干货gank.io"
+                onClick="window.open('http://gank.io/')"
+                android:layout_width="wrap_content"
+                android:textSize="20sp"></TextView>
+        <TextView
+                android:textColor="#999"
+                android:text="第三方社区版WebApp"
+                android:layout_width="wrap_content"
+                android:textSize="12sp"></TextView>
+        <TextView
+                onClick="window.location.href = 'https://github.com/linfaxin/GankWebApp'"
+                android:layout_marginTop="20dp"
+                android:state_pressed="background:#ddd"
+                android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:textColor="#666"
+                android:gravity="center"
+                android:text="欢迎Star&PR: "
+                android:drawableRight="@drawable/icon_github"></TextView>
+        <LinearLayout
+                android:layout_margin="12dp"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:gravity="bottom">
+            <TextView
+                    onClick="window.location.href = 'https://github.com/linfaxin/AndroidUI-WebApp'"
+                    android:state_pressed="background:#ccc"
+                    android:background="#eee"
+                    android:padding="8dp"
+                    android:textColor="#999"
+                    android:text="由AndroidUI框架驱动"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
