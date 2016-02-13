@@ -4330,6 +4330,7 @@ var android;
                         return android.R.drawable[refString] || android.R.image[refString];
                     }
                     else if (Resources.buildDrawableFinder && refString.startsWith('@drawable/')) {
+                        refString = refString.substring('@drawable/'.length);
                         return Resources.buildDrawableFinder(refString);
                     }
                     else if (refString.startsWith('@')) {
@@ -14824,7 +14825,7 @@ var android;
                 let matchedAttr = this._stateAttrList.getMatchedStateAttr(newState);
                 for (let [key, value] of matchedAttr.getAttrMap().entries()) {
                     let attrValue = this._getBinderAttrValue(key);
-                    if (oldMatchedAttr && attrValue != null) {
+                    if (oldMatchedAttr) {
                         oldMatchedAttr.setAttr(key, attrValue);
                     }
                     if (value == attrValue)
