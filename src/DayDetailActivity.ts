@@ -49,6 +49,7 @@ module com.linfaxin.gankwebapp {
         }
         
         private initPage(mapData){
+            let activity = this;
             let fuliArray = mapData['福利'];
             delete mapData['福利'];
             
@@ -63,7 +64,8 @@ module com.linfaxin.gankwebapp {
                 imageView.setImageURI(fuli.url);
                 imageView.setOnClickListener({
                     onClick(view:android.view.View){
-                        //TODO 查看大图
+                        activity.startActivity(new android.content.Intent('com.linfaxin.gankwebapp.PhotoActivity')
+                            .putExtra('url', fuli.url));
                     }
                 });
                 list.addHeaderView(imageView);

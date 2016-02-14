@@ -38,7 +38,7 @@ var com;
                         null,
                         null,
                         null,
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABTAAAAUwBaYa9OQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKGSURBVHic7dtPi41xGMbx70g0s5GFDUVqUnZkZ6MwkrIlzQuwZWcnyo4SibKws5CFELPyEogweQfqFInInxyLp1kqi/u6r87j+ryA+3ee5zudM+f3O8/cdDolfNa5X8D/LgHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzNY3rbMJOABsAzY2rVllCkyAV8Dr6uEdAU4At4DNDWup3QOWgV9VA+fEP03cyfBXs6BcpNl54GLVMPVnwEHGdfMBjlcOUwfYJZ7vUHpN6gDPxfMdXlYOUwd4AnwSr9HtfuUwdYDPwGHgg3idLneB65UD1f8FrdkCnAMOdSwmMAFuAA+B35WDuwLEX2QrwiwBzBLALAHMEsAsAcwSwCwBzBLArONEbAE4zbCPPutHkleA1crhHVsRT4Gj6kWafAP2URhB/RZ0hPHcfIB54FLlQHWAveL5DqXXpA4wa+/3/2K+cpg6wCPxfIeVymHqAC8oPsIz+wJcqxzY8T3gFMOL/tGwltIqcIziHxp0nohtB/Z3LVZsAjxj+E5QKkeSZtmKMEsAswQwSwCzBDBLALMEMEsAs66H9DYAe5jtE7G3wPvq4R0BloDbwI6GtZR+AjeBMxRuSai3IrYyPKQ3hick15wFrlYNU38GLDGumw9wsnKYOsBu8XyH0mtSB3gjnu/wrnKYOsBj4Kt4jW4PKoepA3xk+EHWWCKsAJcrB3YdyCwCF5j9h/TuAN8rB+dEzCxbEWYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWD2B4u4XyNfW30oAAAAAElFTkSuQmCC"
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABxUlEQVR42u3bvyuFURzH8Ut+lJIMSgalLMpCslmuGMWClAwWFq5JljszGOwGi0HKalAGi7AopUzXeBe6EsVyfJ5c/4Cu3M+396n3P3Bew/N8n/OcXEopR/8XmwAAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAL+tQ02pVVUwa10tqEFXgFn1nGKsI9XkBNCn3lKsVXQCWE7x1o0TwE5AgBcngLmAABdOAO2qEgxgze0taEQ9Bdn8Q9XgOAd0qV11a9qZmlaNTMJMwgQAAAQAAAQAAAQAAFTvAG1qQ52rB/VoVkldq3014AhwGuhL6HutEf568ycDngecOAFsBgQoOQEUAwKUnQCGAgIcuD2EjwNt/qsadgPIfmTaUx/mm3+vxpwHsV41b9p4rc+CmYT5FEEAAEBsAgAAEAAAUHCAFjWqZgyn4OyOQ151uwJMVI/23Ndn9ZuW1e/pPSnODcmfVXACWAp4HnDpBLAdEKDiBLAYEODKCaAzxbuoveX2FpQPhJD949TsOAf0p+8bhmXT7tSKamUSZhImAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAOq8L8lFlFv9HJHHAAAAAElFTkSuQmCC"
                     ]
                 };
                 var imageCache = {
@@ -98,8 +98,8 @@ var com;
             var R;
             (function (R) {
                 const _layout_data = {
-                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <androidui.widget.pullrefreshloadlayout android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"prll\">\n        <listview id=\"listView\">\n        </listview>\n    </androidui.widget.pullrefreshloadlayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"60dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.location.href = 'https://github.com/linfaxin/GankWebApp'\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#666\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR: \" android:drawableright=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.location.href = 'https://github.com/linfaxin/AndroidUI-WebApp'\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
-                    "day_detail_list_item": "<linearlayout android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
+                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <androidui.widget.pullrefreshloadlayout android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"prll\">\n        <listview id=\"listView\">\n        </listview>\n    </androidui.widget.pullrefreshloadlayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"60dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.open('https://github.com/linfaxin/GankWebApp')\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#666\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR: \" android:drawableright=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.open('https://github.com/linfaxin/AndroidUI-WebApp')\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
+                    "day_detail_list_item": "<linearlayout android:background=\"white\" android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
                     "main_list_item": "<linearlayout android:padding=\"8dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n    <imageview android:scaleType=\"centerCrop\" android:layout_height=\"35vw\" android:layout_width=\"35vw\" id=\"imageView\"></imageview>\n    <linearlayout android:layout_marginLeft=\"12dp\" android:layout_height=\"match_parent\" android:gravity=\"center\" android:orientation=\"vertical\">\n        <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"18sp\" id=\"title\"></textview>\n        <textview android:layout_marginTop=\"4dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n    </linearlayout>\n</linearlayout>"
                 };
                 const _tempDiv = document.createElement('div');
@@ -165,6 +165,7 @@ var com;
                     });
                 }
                 initPage(mapData) {
+                    let activity = this;
                     let fuliArray = mapData['福利'];
                     delete mapData['福利'];
                     let adapter = new DetailAdapter(mapData);
@@ -177,6 +178,8 @@ var com;
                         imageView.setImageURI(fuli.url);
                         imageView.setOnClickListener({
                             onClick(view) {
+                                activity.startActivity(new android.content.Intent('com.linfaxin.gankwebapp.PhotoActivity')
+                                    .putExtra('url', fuli.url));
                             }
                         });
                         list.addHeaderView(imageView);
@@ -387,6 +390,27 @@ var com;
                     return -1;
                 }
             }
+        })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
+    })(linfaxin = com.linfaxin || (com.linfaxin = {}));
+})(com || (com = {}));
+var com;
+(function (com) {
+    var linfaxin;
+    (function (linfaxin) {
+        var gankwebapp;
+        (function (gankwebapp) {
+            var ActionBarActivity = android.app.ActionBarActivity;
+            var PhotoView = uk.co.senab.photoview.PhotoView;
+            class PhotoActivity extends ActionBarActivity {
+                onCreate(savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    this.setTitle('图片');
+                    let photo = new PhotoView(this);
+                    photo.setImageURI(this.getIntent().getStringExtra('url'));
+                    this.setContentView(photo);
+                }
+            }
+            gankwebapp.PhotoActivity = PhotoActivity;
         })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
     })(linfaxin = com.linfaxin || (com.linfaxin = {}));
 })(com || (com = {}));

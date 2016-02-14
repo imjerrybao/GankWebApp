@@ -43,7 +43,7 @@ var com;
                 var NetImage = androidui.image.NetImage;
                 var data = {
                     "icon_github": [null, null, null, "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFEUlEQVR42t1ba2gUVxSOm2yb7BqVGk0o1EJaE63+iIIVHy0KPkpphKLYoAWVllhBFgTr40+ghUCqRMRaCqU0UagUfyaERKtFghGUNlBKiZWqoLaigtRXYtS4/Q6cgel2Zvaee2d27+TH9yM7cx7fl5k7995zbkk2my0pBurr3pwCvMGYUqw8oiaZAJYArcAPQD/wJzAMZHMwzNf6+d5Wtk3ESgAkXA68B3wL3PIgKsUt9kU+y60VAMnVAd8DD0Mg7YeHHKPOGgGQTA3wNfA0QuK5eMoxa4omAIJXAp9H/B9XeSIoh8qCCoCAK4HbRSSeC8plZUEEQKAM8Mwi8g4op0xkAsB5EvjGQuK5oByToQoAh1XAmRiQd0C5VoUiABxNBoZiRN4B5TzZSAA4KAV6Y0jeAeVeaiJAe4zJO2jXEgCGm8cBeQebRQLAYBHwOI/T58DrwAxgKXAQ+LsAZG4Ch4C3gVc5h+d5bIjLIiUB+L1XGfQGfVZ/HwLXIyB+g30nPOIOKg6KpSoCNCsmtC/g9akAWlzT5DHgN6CDf98ObADeYWzg3+jad3zvM9cy+TMgFRBvn2LOzYEC4IY0P2IqzjYqfEJfBt4ivxozzhS/Wq8o3LtR8PqkgwRoETySa4q1i+MhwBpB3i2eAuDCdOCBwNEqiwRYJcibOE73EqBNOChlLBIgI8y9zUuAS0InxywS4Jgw90v/EQA/zNb4LJ2zSIBzGvnPdguwR8PBCosEWKGR/x63AFIFj9hC3iXCEZ0nmAyrFaaSbtxRXWsXWIAqzk2VB3GuJsMmoXK7bSPvEmG3kEsTGe0SGi23WIDlQi67SngVJzGaarEAU4VcDpLRccmKzFbyLhFuCPgcJ4OzAoOeGAjQI+BzlgyuCAw6YiBAh4DPFTIYERh0xUCALgGfETK4JzAYiIEAAwI+98jgssDgYgwEuCjgc5kMzgursUmLySeF1erz0lFzvE2EenQWEfstFmC/dFGnMxUesliAIZ2p8EKNtfR6C8l/oMFjIRmWCTdDs9zOlrSI/AvCCZ2zOVrmOOjTUK/NIgG+0Mi/z70jtFezXLXTAvKfaua+1y1ALZevdBxR2aqsCMTLOLZOzsS1NndbvNugcPkL0FBA8g0cUzffbq+6wGqfmy8Aa7l42ZunQ+wU8H5QIdOA9ETO46cQKs2rvQSY4FMc+cNdoOQG5msKLWu/co/vVmC+pOmZH+8lXPE5Cvxu8Ir+ryhCXP2Ko9t8jIjwAtd9M4SNkieEAiQ0ix0q2BZUHabmiJ8DuiwWu+5dBowqBLwLTNNsvh4OmfxgbpOEV+D5Ae/5X8BLrnvXKTyaRw3e+84QyY+5n+J8PUIHVCdA+PvjqKbNsN0RogCHJU1SNOJe9XH0KLdNnQesw9wkNcpjxmn+clQUuObnhet+TZNBwecGbJd96WMzIeRPX00I5B8EzVFUOi/8DkJ8VIAJT3kIHeTvmvYKNwc432lyWEEhdoWhAJ+E1S0e1Dx1H/gKmOeIwROZ1/hgRcJAgJQB+ZawzwtsAZ4oBB7N+YyaDIJpDeIUf1MkJ0Z4VP5HmFDKcP4viUWTrmVRH5mZI9x7TxsIUCmIQ92l9YU6NPUijwuPFRKrNBBgkoL/Yd7Q0dqiMx2lZwI/5klwUoQCnKTBtugnR5FEo48QY4ZjQNpnrUGxGq07O4ykZtEskT+N9CXoDMFnJ/u6z75nWX96nEfvVIj+aD4wMYpc/wVhd5UCbJ7djwAAAABJRU5ErkJggg=="],
-                    "icon_menu": [null, null, null, "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABTAAAAUwBaYa9OQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKGSURBVHic7dtPi41xGMbx70g0s5GFDUVqUnZkZ6MwkrIlzQuwZWcnyo4SibKws5CFELPyEogweQfqFInInxyLp1kqi/u6r87j+ryA+3ee5zudM+f3O8/cdDolfNa5X8D/LgHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzBLALAHMEsAsAcwSwCwBzNY3rbMJOABsAzY2rVllCkyAV8Dr6uEdAU4At4DNDWup3QOWgV9VA+fEP03cyfBXs6BcpNl54GLVMPVnwEHGdfMBjlcOUwfYJZ7vUHpN6gDPxfMdXlYOUwd4AnwSr9HtfuUwdYDPwGHgg3idLneB65UD1f8FrdkCnAMOdSwmMAFuAA+B35WDuwLEX2QrwiwBzBLALAHMEsAsAcwSwCwBzBLArONEbAE4zbCPPutHkleA1crhHVsRT4Gj6kWafAP2URhB/RZ0hPHcfIB54FLlQHWAveL5DqXXpA4wa+/3/2K+cpg6wCPxfIeVymHqAC8oPsIz+wJcqxzY8T3gFMOL/tGwltIqcIziHxp0nohtB/Z3LVZsAjxj+E5QKkeSZtmKMEsAswQwSwCzBDBLALMEMEsAs66H9DYAe5jtE7G3wPvq4R0BloDbwI6GtZR+AjeBMxRuSai3IrYyPKQ3hick15wFrlYNU38GLDGumw9wsnKYOsBu8XyH0mtSB3gjnu/wrnKYOsBj4Kt4jW4PKoepA3xk+EHWWCKsAJcrB3YdyCwCF5j9h/TuAN8rB+dEzCxbEWYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWCWAGYJYJYAZglglgBmCWD2B4u4XyNfW30oAAAAAElFTkSuQmCC"]
+                    "icon_menu": [null, null, null, "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABxUlEQVR42u3bvyuFURzH8Ut+lJIMSgalLMpCslmuGMWClAwWFq5JljszGOwGi0HKalAGi7AopUzXeBe6EsVyfJ5c/4Cu3M+396n3P3Bew/N8n/OcXEopR/8XmwAAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAL+tQ02pVVUwa10tqEFXgFn1nGKsI9XkBNCn3lKsVXQCWE7x1o0TwE5AgBcngLmAABdOAO2qEgxgze0taEQ9Bdn8Q9XgOAd0qV11a9qZmlaNTMJMwgQAAAQAAAQAAAQAAFTvAG1qQ52rB/VoVkldq3014AhwGuhL6HutEf568ycDngecOAFsBgQoOQEUAwKUnQCGAgIcuD2EjwNt/qsadgPIfmTaUx/mm3+vxpwHsV41b9p4rc+CmYT5FEEAAEBsAgAAEAAAUHCAFjWqZgyn4OyOQ151uwJMVI/23Ndn9ZuW1e/pPSnODcmfVXACWAp4HnDpBLAdEKDiBLAYEODKCaAzxbuoveX2FpQPhJD949TsOAf0p+8bhmXT7tSKamUSZhImAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAOq8L8lFlFv9HJHHAAAAAElFTkSuQmCC"]
                 };
                 var imageCache = {
                     icon_github: null,
@@ -131,8 +131,8 @@ var com;
             var R;
             (function (R) {
                 var _layout_data = {
-                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <androidui.widget.pullrefreshloadlayout android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"prll\">\n        <listview id=\"listView\">\n        </listview>\n    </androidui.widget.pullrefreshloadlayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"60dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.location.href = 'https://github.com/linfaxin/GankWebApp'\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#666\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR: \" android:drawableright=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.location.href = 'https://github.com/linfaxin/AndroidUI-WebApp'\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
-                    "day_detail_list_item": "<linearlayout android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
+                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <androidui.widget.pullrefreshloadlayout android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"prll\">\n        <listview id=\"listView\">\n        </listview>\n    </androidui.widget.pullrefreshloadlayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"60dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.open('https://github.com/linfaxin/GankWebApp')\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#666\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR: \" android:drawableright=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.open('https://github.com/linfaxin/AndroidUI-WebApp')\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
+                    "day_detail_list_item": "<linearlayout android:background=\"white\" android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
                     "main_list_item": "<linearlayout android:padding=\"8dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n    <imageview android:scaleType=\"centerCrop\" android:layout_height=\"35vw\" android:layout_width=\"35vw\" id=\"imageView\"></imageview>\n    <linearlayout android:layout_marginLeft=\"12dp\" android:layout_height=\"match_parent\" android:gravity=\"center\" android:orientation=\"vertical\">\n        <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"18sp\" id=\"title\"></textview>\n        <textview android:layout_marginTop=\"4dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n    </linearlayout>\n</linearlayout>"
                 };
                 var _tempDiv = document.createElement('div');
@@ -221,20 +221,27 @@ var com;
                 }, {
                     key: "initPage",
                     value: function initPage(mapData) {
+                        var _this3 = this;
+
+                        var activity = this;
                         var fuliArray = mapData['福利'];
                         delete mapData['福利'];
                         var adapter = new DetailAdapter(mapData);
                         var list = new ExpandableListView(this);
                         if (fuliArray) {
-                            var fuli = fuliArray[0];
-                            var imageView = new ImageView(this);
-                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            imageView.setLayoutParams(new android.widget.AbsListView.LayoutParams(-1, this.getResources().getDisplayMetrics().widthPixels * 0.8));
-                            imageView.setImageURI(fuli.url);
-                            imageView.setOnClickListener({
-                                onClick: function onClick(view) {}
-                            });
-                            list.addHeaderView(imageView);
+                            (function () {
+                                var fuli = fuliArray[0];
+                                var imageView = new ImageView(_this3);
+                                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                                imageView.setLayoutParams(new android.widget.AbsListView.LayoutParams(-1, _this3.getResources().getDisplayMetrics().widthPixels * 0.8));
+                                imageView.setImageURI(fuli.url);
+                                imageView.setOnClickListener({
+                                    onClick: function onClick(view) {
+                                        activity.startActivity(new android.content.Intent('com.linfaxin.gankwebapp.PhotoActivity').putExtra('url', fuli.url));
+                                    }
+                                });
+                                list.addHeaderView(imageView);
+                            })();
                         }
                         list.setExpandableAdapter(adapter);
                         for (var i = 0, count = adapter.getGroupCount(); i < count; i++) {
@@ -257,13 +264,13 @@ var com;
                 function DetailAdapter(mapData) {
                     _classCallCheck(this, DetailAdapter);
 
-                    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(DetailAdapter).call(this));
+                    var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(DetailAdapter).call(this));
 
-                    _this3.data = new Map();
+                    _this4.data = new Map();
                     for (var key in mapData) {
-                        _this3.data.set(key, mapData[key]);
+                        _this4.data.set(key, mapData[key]);
                     }
-                    return _this3;
+                    return _this4;
                 }
 
                 _createClass(DetailAdapter, [{
@@ -364,16 +371,16 @@ var com;
                         args[_key] = arguments[_key];
                     }
 
-                    var _this4 = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(MainActivity)).call.apply(_Object$getPrototypeO, [this].concat(args)));
+                    var _this5 = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(MainActivity)).call.apply(_Object$getPrototypeO, [this].concat(args)));
 
-                    _this4.nextLoadingPage = 1;
-                    return _this4;
+                    _this5.nextLoadingPage = 1;
+                    return _this5;
                 }
 
                 _createClass(MainActivity, [{
                     key: "onCreate",
                     value: function onCreate() {
-                        var _this5 = this;
+                        var _this6 = this;
 
                         _get(Object.getPrototypeOf(MainActivity.prototype), "onCreate", this).call(this);
                         var activity = this;
@@ -391,10 +398,10 @@ var com;
                             }
                         });
                         this.initAllDayTitle().then(function () {
-                            _this5.initPRLL();
+                            _this6.initPRLL();
                         }, function () {
-                            Toast.makeText(_this5, '标题数据获取失败', Toast.LENGTH_SHORT).show();
-                            _this5.initPRLL();
+                            Toast.makeText(_this6, '标题数据获取失败', Toast.LENGTH_SHORT).show();
+                            _this6.initPRLL();
                         });
                         var drawerLayout = this.findViewById(R.id.drawerLayout);
                         activity.getActionBar().setActionLeft('', R.image.icon_menu, {
@@ -453,15 +460,15 @@ var com;
                 }, {
                     key: "loadNextPage",
                     value: function loadNextPage() {
-                        var _this6 = this;
+                        var _this7 = this;
 
                         var activity = this;
                         return new Promise(function (resolve, reject) {
-                            fetch("http://gank.avosapps.com/api/data/福利/" + MainActivity.ListLoadCount + "/" + _this6.nextLoadingPage).then(function (response) {
+                            fetch("http://gank.avosapps.com/api/data/福利/" + MainActivity.ListLoadCount + "/" + _this7.nextLoadingPage).then(function (response) {
                                 return response.json();
                             }).then(function (json) {
                                 resolve(json.results);
-                                _this6.nextLoadingPage++;
+                                _this7.nextLoadingPage++;
                             }).catch(function (ex) {
                                 console.error(ex);
                                 Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
@@ -490,10 +497,10 @@ var com;
                         args[_key2] = arguments[_key2];
                     }
 
-                    var _this7 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(MyListAdapter)).call.apply(_Object$getPrototypeO2, [this].concat(args)));
+                    var _this8 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(MyListAdapter)).call.apply(_Object$getPrototypeO2, [this].concat(args)));
 
-                    _this7.data = [];
-                    return _this7;
+                    _this8.data = [];
+                    return _this8;
                 }
 
                 _createClass(MyListAdapter, [{
@@ -528,6 +535,42 @@ var com;
 
                 return MyListAdapter;
             }(BaseAdapter);
+        })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
+    })(linfaxin = com.linfaxin || (com.linfaxin = {}));
+})(com || (com = {}));
+var com;
+(function (com) {
+    var linfaxin;
+    (function (linfaxin) {
+        var gankwebapp;
+        (function (gankwebapp) {
+            var ActionBarActivity = android.app.ActionBarActivity;
+            var PhotoView = uk.co.senab.photoview.PhotoView;
+
+            var PhotoActivity = function (_ActionBarActivity3) {
+                _inherits(PhotoActivity, _ActionBarActivity3);
+
+                function PhotoActivity() {
+                    _classCallCheck(this, PhotoActivity);
+
+                    return _possibleConstructorReturn(this, Object.getPrototypeOf(PhotoActivity).apply(this, arguments));
+                }
+
+                _createClass(PhotoActivity, [{
+                    key: "onCreate",
+                    value: function onCreate(savedInstanceState) {
+                        _get(Object.getPrototypeOf(PhotoActivity.prototype), "onCreate", this).call(this, savedInstanceState);
+                        this.setTitle('图片');
+                        var photo = new PhotoView(this);
+                        photo.setImageURI(this.getIntent().getStringExtra('url'));
+                        this.setContentView(photo);
+                    }
+                }]);
+
+                return PhotoActivity;
+            }(ActionBarActivity);
+
+            gankwebapp.PhotoActivity = PhotoActivity;
         })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
     })(linfaxin = com.linfaxin || (com.linfaxin = {}));
 })(com || (com = {}));
