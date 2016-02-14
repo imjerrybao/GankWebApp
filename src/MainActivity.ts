@@ -33,12 +33,24 @@ module com.linfaxin.gankwebapp {
 
         onCreate():void {
             super.onCreate();
+            const activity = this;
             this.setTitle('首页');
             this.setContentView(R.layout.activity_main);
 
             this.listView = <ListView>this.findViewById('listView');
             this.adapter = new MyListAdapter();
             this.listView.setAdapter(this.adapter);
+            this.listView.setOnItemClickListener({
+                onItemClick(parent: android.widget.AdapterView<any>, view: View, position: number, id: number): void{
+                    let item = activity.adapter.getItem(position);
+                    let day = item.publishedAt.split('T')[0];
+                    let title = MainActivity.AllDataTitle.get(day) || '暂无标题';
+                    
+                    activity.startActivity(new android.content.Intent('com.linfaxin.gankwebapp.DayDetailActivity')
+                        .putExtra(DayDetailActivity.Extra_Title, title)
+                        .putExtra(DayDetailActivity.Extra_Date, day));
+                }
+            });
 
             this.initAllDayTitle().then(()=>{
                 this.initPRLL();

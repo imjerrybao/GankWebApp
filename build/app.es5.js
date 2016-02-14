@@ -23,9 +23,9 @@ var com;
                 R.id = {
                     "prll": "prll",
                     "listView": "listView",
-                    "imageView": "imageView",
                     "title": "title",
-                    "summary": "summary"
+                    "summary": "summary",
+                    "imageView": "imageView"
                 };
             })(R = gankwebapp.R || (gankwebapp.R = {}));
         })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
@@ -119,7 +119,8 @@ var com;
             (function (R) {
                 var _layout_data = {
                     "activity_main": "<android.support.v4.widget.drawerlayout>\n    <androidui.widget.pullrefreshloadlayout android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"prll\">\n        <listview id=\"listView\">\n        </listview>\n    </androidui.widget.pullrefreshloadlayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"60dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.location.href = 'https://github.com/linfaxin/GankWebApp'\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#666\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR: \" android:drawableright=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.location.href = 'https://github.com/linfaxin/AndroidUI-WebApp'\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
-                    "main_list_item": "<linearlayout android:padding=\"8dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n    <imageview android:scaleType=\"centerCrop\" android:layout_height=\"35vw\" android:layout_width=\"35vw\" id=\"imageView\"></imageview>\n    <linearlayout android:layout_marginLeft=\"12dp\" android:layout_height=\"match_parent\" android:gravity=\"center\" android:orientation=\"vertical\">\n        <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"18sp\" id=\"title\"></textview>\n        <textview android:layout_marginTop=\"4dp\" android:textSize=\"12sp\" id=\"summary\"></textview>\n    </linearlayout>\n</linearlayout>"
+                    "day_detail_list_item": "<linearlayout android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
+                    "main_list_item": "<linearlayout android:padding=\"8dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n    <imageview android:scaleType=\"centerCrop\" android:layout_height=\"35vw\" android:layout_width=\"35vw\" id=\"imageView\"></imageview>\n    <linearlayout android:layout_marginLeft=\"12dp\" android:layout_height=\"match_parent\" android:gravity=\"center\" android:orientation=\"vertical\">\n        <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"18sp\" id=\"title\"></textview>\n        <textview android:layout_marginTop=\"4dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n    </linearlayout>\n</linearlayout>"
                 };
                 var _tempDiv = document.createElement('div');
 
@@ -145,6 +146,7 @@ var com;
                 }();
 
                 layout.activity_main = '@layout/activity_main';
+                layout.day_detail_list_item = '@layout/day_detail_list_item';
                 layout.main_list_item = '@layout/main_list_item';
                 R.layout = layout;
                 android.content.res.Resources.buildLayoutFinder = function (refString) {
@@ -161,14 +163,184 @@ var com;
         var gankwebapp;
         (function (gankwebapp) {
             var ActionBarActivity = android.app.ActionBarActivity;
+            var ProgressBar = android.widget.ProgressBar;
+            var FrameLayout = android.widget.FrameLayout;
+            var Toast = android.widget.Toast;
+            var TextView = android.widget.TextView;
+            var ExpandableListView = android.widget.ExpandableListView;
+            var BaseExpandableListAdapter = android.widget.BaseExpandableListAdapter;
+            var ImageView = android.widget.ImageView;
+
+            var DayDetailActivity = function (_ActionBarActivity) {
+                _inherits(DayDetailActivity, _ActionBarActivity);
+
+                function DayDetailActivity() {
+                    _classCallCheck(this, DayDetailActivity);
+
+                    return _possibleConstructorReturn(this, Object.getPrototypeOf(DayDetailActivity).apply(this, arguments));
+                }
+
+                _createClass(DayDetailActivity, [{
+                    key: "onCreate",
+                    value: function onCreate(savedInstanceState) {
+                        var _this2 = this;
+
+                        _get(Object.getPrototypeOf(DayDetailActivity.prototype), "onCreate", this).call(this, savedInstanceState);
+                        var activity = this;
+                        this.date = this.getIntent().getStringExtra(DayDetailActivity.Extra_Date);
+                        if (!this.date) {
+                            this.finish();
+                            return;
+                        }
+                        this.setTitle(this.date);
+                        this.date = this.date.replace('-', '/').replace('-', '/');
+                        var pd = new ProgressBar(this);
+                        this.setContentView(pd, new FrameLayout.LayoutParams(-2, -2, android.view.Gravity.CENTER));
+                        fetch('http://gank.avosapps.com/api/day/' + this.date).then(function (response) {
+                            return response.json();
+                        }).then(function (json) {
+                            _this2.initPage(json.results);
+                        }).catch(function (e) {
+                            console.error(e);
+                            Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                }, {
+                    key: "initPage",
+                    value: function initPage(mapData) {
+                        var fuliArray = mapData['福利'];
+                        delete mapData['福利'];
+                        var adapter = new DetailAdapter(mapData);
+                        var list = new ExpandableListView(this);
+                        if (fuliArray) {
+                            var fuli = fuliArray[0];
+                            var imageView = new ImageView(this);
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            imageView.setLayoutParams(new android.widget.AbsListView.LayoutParams(-1, this.getResources().getDisplayMetrics().widthPixels * 0.8));
+                            imageView.setImageURI(fuli.url);
+                            imageView.setOnClickListener({
+                                onClick: function onClick(view) {}
+                            });
+                            list.addHeaderView(imageView);
+                        }
+                        list.setExpandableAdapter(adapter);
+                        for (var i = 0, count = adapter.getGroupCount(); i < count; i++) {
+                            list.expandGroup(i);
+                        }
+                        this.setContentView(list);
+                    }
+                }]);
+
+                return DayDetailActivity;
+            }(ActionBarActivity);
+
+            DayDetailActivity.Extra_Title = 'title';
+            DayDetailActivity.Extra_Date = 'date';
+            gankwebapp.DayDetailActivity = DayDetailActivity;
+
+            var DetailAdapter = function (_BaseExpandableListAd) {
+                _inherits(DetailAdapter, _BaseExpandableListAd);
+
+                function DetailAdapter(mapData) {
+                    _classCallCheck(this, DetailAdapter);
+
+                    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(DetailAdapter).call(this));
+
+                    _this3.data = new Map();
+                    for (var key in mapData) {
+                        _this3.data.set(key, mapData[key]);
+                    }
+                    return _this3;
+                }
+
+                _createClass(DetailAdapter, [{
+                    key: "getGroupCount",
+                    value: function getGroupCount() {
+                        return this.data.size;
+                    }
+                }, {
+                    key: "getChildrenCount",
+                    value: function getChildrenCount(groupPosition) {
+                        return Array.from(this.data.values())[groupPosition].length;
+                    }
+                }, {
+                    key: "getGroup",
+                    value: function getGroup(groupPosition) {
+                        return Array.from(this.data.keys())[groupPosition];
+                    }
+                }, {
+                    key: "getChild",
+                    value: function getChild(groupPosition, childPosition) {
+                        return Array.from(this.data.values())[groupPosition][childPosition];
+                    }
+                }, {
+                    key: "getGroupId",
+                    value: function getGroupId(groupPosition) {
+                        return -1;
+                    }
+                }, {
+                    key: "getChildId",
+                    value: function getChildId(groupPosition, childPosition) {
+                        return -1;
+                    }
+                }, {
+                    key: "hasStableIds",
+                    value: function hasStableIds() {
+                        return false;
+                    }
+                }, {
+                    key: "isChildSelectable",
+                    value: function isChildSelectable(groupPosition, childPosition) {
+                        return false;
+                    }
+                }, {
+                    key: "getGroupView",
+                    value: function getGroupView(groupPosition, isExpanded, convertView, parent) {
+                        var groupTitle = this.getGroup(groupPosition);
+                        if (!isExpanded) groupTitle = '+ ' + groupTitle;
+                        var density = parent.getResources().getDisplayMetrics().density;
+                        var textView = convertView || new TextView(parent.getContext());
+                        textView.setTextSize(18);
+                        textView.setText(groupTitle);
+                        textView.setPadding(16 * density, 16 * density, 16 * density, 16 * density);
+                        return textView;
+                    }
+                }, {
+                    key: "getChildView",
+                    value: function getChildView(groupPosition, childPosition, isLastChild, convertView, parent) {
+                        var item = this.getChild(groupPosition, childPosition);
+                        convertView = convertView || android.view.View.inflate(parent.getContext(), gankwebapp.R.layout.day_detail_list_item);
+                        convertView.findViewById(gankwebapp.R.id.title).setText(item.desc);
+                        convertView.findViewById(gankwebapp.R.id.summary).setText(item.who);
+                        convertView.setOnClickListener({
+                            onClick: function onClick() {
+                                window.open(item.url);
+                            }
+                        });
+                        return convertView;
+                    }
+                }]);
+
+                return DetailAdapter;
+            }(BaseExpandableListAdapter);
+        })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
+    })(linfaxin = com.linfaxin || (com.linfaxin = {}));
+})(com || (com = {}));
+var com;
+(function (com) {
+    var linfaxin;
+    (function (linfaxin) {
+        var gankwebapp;
+        (function (gankwebapp) {
+            var ActionBarActivity = android.app.ActionBarActivity;
             var View = android.view.View;
             var BaseAdapter = android.widget.BaseAdapter;
             var PullRefreshLoadLayout = androidui.widget.PullRefreshLoadLayout;
             var R = com.linfaxin.gankwebapp.R;
             var Toast = android.widget.Toast;
 
-            var MainActivity = function (_ActionBarActivity) {
-                _inherits(MainActivity, _ActionBarActivity);
+            var MainActivity = function (_ActionBarActivity2) {
+                _inherits(MainActivity, _ActionBarActivity2);
 
                 function MainActivity() {
                     var _Object$getPrototypeO;
@@ -179,28 +351,37 @@ var com;
                         args[_key] = arguments[_key];
                     }
 
-                    var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(MainActivity)).call.apply(_Object$getPrototypeO, [this].concat(args)));
+                    var _this4 = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(MainActivity)).call.apply(_Object$getPrototypeO, [this].concat(args)));
 
-                    _this.nextLoadingPage = 1;
-                    return _this;
+                    _this4.nextLoadingPage = 1;
+                    return _this4;
                 }
 
                 _createClass(MainActivity, [{
                     key: "onCreate",
                     value: function onCreate() {
-                        var _this2 = this;
+                        var _this5 = this;
 
                         _get(Object.getPrototypeOf(MainActivity.prototype), "onCreate", this).call(this);
+                        var activity = this;
                         this.setTitle('首页');
                         this.setContentView(R.layout.activity_main);
                         this.listView = this.findViewById('listView');
                         this.adapter = new MyListAdapter();
                         this.listView.setAdapter(this.adapter);
+                        this.listView.setOnItemClickListener({
+                            onItemClick: function onItemClick(parent, view, position, id) {
+                                var item = activity.adapter.getItem(position);
+                                var day = item.publishedAt.split('T')[0];
+                                var title = MainActivity.AllDataTitle.get(day) || '暂无标题';
+                                activity.startActivity(new android.content.Intent('com.linfaxin.gankwebapp.DayDetailActivity').putExtra(gankwebapp.DayDetailActivity.Extra_Title, title).putExtra(gankwebapp.DayDetailActivity.Extra_Date, day));
+                            }
+                        });
                         this.initAllDayTitle().then(function () {
-                            _this2.initPRLL();
+                            _this5.initPRLL();
                         }, function () {
-                            Toast.makeText(_this2, '标题数据获取失败', Toast.LENGTH_SHORT).show();
-                            _this2.initPRLL();
+                            Toast.makeText(_this5, '标题数据获取失败', Toast.LENGTH_SHORT).show();
+                            _this5.initPRLL();
                         });
                     }
                 }, {
@@ -249,15 +430,15 @@ var com;
                 }, {
                     key: "loadNextPage",
                     value: function loadNextPage() {
-                        var _this3 = this;
+                        var _this6 = this;
 
                         var activity = this;
                         return new Promise(function (resolve, reject) {
-                            fetch("http://gank.avosapps.com/api/data/福利/" + MainActivity.ListLoadCount + "/" + _this3.nextLoadingPage).then(function (response) {
+                            fetch("http://gank.avosapps.com/api/data/福利/" + MainActivity.ListLoadCount + "/" + _this6.nextLoadingPage).then(function (response) {
                                 return response.json();
                             }).then(function (json) {
                                 resolve(json.results);
-                                _this3.nextLoadingPage++;
+                                _this6.nextLoadingPage++;
                             }).catch(function (ex) {
                                 console.error(ex);
                                 Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
@@ -286,10 +467,10 @@ var com;
                         args[_key2] = arguments[_key2];
                     }
 
-                    var _this4 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(MyListAdapter)).call.apply(_Object$getPrototypeO2, [this].concat(args)));
+                    var _this7 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(MyListAdapter)).call.apply(_Object$getPrototypeO2, [this].concat(args)));
 
-                    _this4.data = [];
-                    return _this4;
+                    _this7.data = [];
+                    return _this7;
                 }
 
                 _createClass(MyListAdapter, [{

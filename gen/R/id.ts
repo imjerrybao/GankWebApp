@@ -2,8 +2,8 @@ module com.linfaxin.gankwebapp.R {
     export var id = {
         "prll": "prll",
         "listView": "listView",
-        "imageView": "imageView",
         "title": "title",
-        "summary": "summary"
+        "summary": "summary",
+        "imageView": "imageView"
 };
 }
