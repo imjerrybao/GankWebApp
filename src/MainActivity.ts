@@ -58,7 +58,19 @@ module com.linfaxin.gankwebapp {
                 Toast.makeText(this, '标题数据获取失败', Toast.LENGTH_SHORT).show();
                 //标题数据获取失败也继续展示福利列表
                 this.initPRLL();
-            })
+            });
+            
+            
+            let drawerLayout = <android.support.v4.widget.DrawerLayout>this.findViewById(R.id.drawerLayout);
+            activity.getActionBar().setActionLeft('', R.image.icon_menu, {
+                onClick : function(view){
+                    if(drawerLayout.isDrawerOpen(android.view.Gravity.LEFT)){
+                        drawerLayout.closeDrawers();
+                    }else{
+                        drawerLayout.openDrawer(android.view.Gravity.LEFT);
+                    }
+                }
+            });
         }
 
         private initAllDayTitle(){

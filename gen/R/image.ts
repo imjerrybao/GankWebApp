@@ -7,6 +7,7 @@ module com.linfaxin.gankwebapp.R {
     export class image{
 
         static get icon_github(){return new NetDrawable(image_base64.icon_github)}
+        static get icon_menu(){return new NetDrawable(image_base64.icon_menu)}
     }
     android.content.res.Resources.buildDrawableFinder = (refString:string)=>{
         return image[refString];

@@ -1,4 +1,5 @@
-<android.support.v4.widget.DrawerLayout>
+<android.support.v4.widget.DrawerLayout
+        android:id="drawerLayout">
     <androidui.widget.PullRefreshLoadLayout
             android:id="prll"
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:textSize="12sp"></TextView>
         <TextView
-                onClick="window.location.href = 'https://github.com/linfaxin/GankWebApp'"
+                onClick="window.open('https://github.com/linfaxin/GankWebApp')"
                 android:layout_marginTop="20dp"
                 android:state_pressed="background:#ddd"
                 android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:gravity="bottom">
             <TextView
-                    onClick="window.location.href = 'https://github.com/linfaxin/AndroidUI-WebApp'"
+                    onClick="window.open('https://github.com/linfaxin/AndroidUI-WebApp')"
                     android:state_pressed="background:#ccc"
                     android:background="#eee"
                     android:padding="8dp"
