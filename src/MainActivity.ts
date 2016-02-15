@@ -74,18 +74,20 @@ module com.linfaxin.gankwebapp {
         }
 
         private initAllDayTitle(){
-            //TODO get http://gank.io/history
+            //get http://gank.io/history
             return new Promise<void>((resolve, reject)=>{
-                resolve();
-                //fetch(`http://gank.io/history`)
-                //    .then((response)=>{
-                //        return response.text();
-                //    }).then((text)=>{
-                //        resolve();
-                //    }).catch((ex)=>{
-                //        console.error(ex);
-                //        reject();
-                //    });
+                fetch(`http://faxnode.duapp.com/gank_history`)
+                    .then((response)=>{
+                        return response.json();
+                    }).then((json)=>{
+                        for(let key in json){
+                            MainActivity.AllDataTitle.set(key, json[key]);
+                        }
+                        resolve();
+                    }).catch((ex)=>{
+                        console.error(ex);
+                        reject();
+                    });
             });
         }
 

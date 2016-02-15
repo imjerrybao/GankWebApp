@@ -418,7 +418,17 @@ var com;
                     key: "initAllDayTitle",
                     value: function initAllDayTitle() {
                         return new Promise(function (resolve, reject) {
-                            resolve();
+                            fetch("http://faxnode.duapp.com/gank_history").then(function (response) {
+                                return response.json();
+                            }).then(function (json) {
+                                for (var key in json) {
+                                    MainActivity.AllDataTitle.set(key, json[key]);
+                                }
+                                resolve();
+                            }).catch(function (ex) {
+                                console.error(ex);
+                                reject();
+                            });
                         });
                     }
                 }, {

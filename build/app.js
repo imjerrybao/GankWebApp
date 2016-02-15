@@ -308,7 +308,18 @@ var com;
                 }
                 initAllDayTitle() {
                     return new Promise((resolve, reject) => {
-                        resolve();
+                        fetch(`http://faxnode.duapp.com/gank_history`)
+                            .then((response) => {
+                            return response.json();
+                        }).then((json) => {
+                            for (let key in json) {
+                                MainActivity.AllDataTitle.set(key, json[key]);
+                            }
+                            resolve();
+                        }).catch((ex) => {
+                            console.error(ex);
+                            reject();
+                        });
                     });
                 }
                 initPRLL() {
