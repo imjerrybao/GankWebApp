@@ -455,13 +455,18 @@ var com;
                     key: "onCreate",
                     value: function onCreate(savedInstanceState) {
                         _get(Object.getPrototypeOf(PhotoActivity.prototype), "onCreate", this).call(this, savedInstanceState);
-                        this.setTitle('图片');
+                        var enterAnim = android.R.anim.grow_fade_in_center;
+                        enterAnim.setDuration(500);
+                        var exitAnim = android.R.anim.shrink_fade_out_center;
+                        exitAnim.setDuration(500);
+                        this.getWindow().setWindowAnimations(enterAnim, exitAnim, null, null);
+                        this.getWindow().setFloating(true);
                         var photo = new PhotoView(this);
                         photo.setImageURI(this.getIntent().getStringExtra('url'));
                         this.setContentView(photo);
                         var activity = this;
-                        photo.setOnClickListener({
-                            onClick: function onClick(view) {
+                        photo.setOnPhotoTapListener({
+                            onPhotoTap: function onPhotoTap() {
                                 activity.finish();
                             }
                         });

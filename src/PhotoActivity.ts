@@ -16,15 +16,21 @@ module com.linfaxin.gankwebapp {
         protected onCreate(savedInstanceState?:android.os.Bundle):void {
             super.onCreate(savedInstanceState);
 
-            this.setTitle('图片');
+            let enterAnim = android.R.anim.grow_fade_in_center;
+            enterAnim.setDuration(500);
+            let exitAnim = android.R.anim.shrink_fade_out_center;
+            exitAnim.setDuration(500);
+            this.getWindow().setWindowAnimations(enterAnim, exitAnim, null, null);
+            this.getWindow().setFloating(true);
+
 
             let photo = new PhotoView(this);
 	        photo.setImageURI(this.getIntent().getStringExtra('url'));
             this.setContentView(photo);
 
             let activity = this;
-            photo.setOnClickListener({
-                onClick(view:android.view.View){
+            photo.setOnPhotoTapListener({
+                onPhotoTap(){
                     activity.finish();
                 }
             })
