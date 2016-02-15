@@ -211,14 +211,16 @@ var com;
                         this.date = this.date.replace('-', '/').replace('-', '/');
                         var pd = new ProgressBar(this);
                         this.setContentView(pd, new FrameLayout.LayoutParams(-2, -2, android.view.Gravity.CENTER));
-                        fetch('http://gank.avosapps.com/api/day/' + this.date).then(function (response) {
-                            return response.json();
-                        }).then(function (json) {
-                            _this2.initPage(json.results);
-                        }).catch(function (e) {
-                            console.error(e);
-                            Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
-                        });
+                        setTimeout(function () {
+                            fetch('http://gank.avosapps.com/api/day/' + _this2.date).then(function (response) {
+                                return response.json();
+                            }).then(function (json) {
+                                _this2.initPage(json.results);
+                            }).catch(function (e) {
+                                console.error(e);
+                                Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
+                            });
+                        }, 300);
                     }
                 }, {
                     key: "initPage",

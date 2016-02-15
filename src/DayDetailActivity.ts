@@ -36,15 +36,18 @@ module com.linfaxin.gankwebapp {
             let pd = new ProgressBar(this);
             this.setContentView(pd, new FrameLayout.LayoutParams(-2, -2, android.view.Gravity.CENTER));
             
-            fetch('http://gank.avosapps.com/api/day/'+this.date)
-            .then((response)=>{
-                return response.json();
-            }).then((json)=>{
-                this.initPage(json.results);
-            }).catch((e)=>{
-                console.error(e);
-                Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
-            })
+            setTimeout(()=>{
+                //延时请求，确保Activity切换动画结束
+                fetch('http://gank.avosapps.com/api/day/'+this.date)
+                .then((response)=>{
+                    return response.json();
+                }).then((json)=>{
+                    this.initPage(json.results);
+                }).catch((e)=>{
+                    console.error(e);
+                    Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
+                })
+            }, 300);
 
         }
         

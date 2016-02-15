@@ -156,15 +156,17 @@ var com;
                     this.date = this.date.replace('-', '/').replace('-', '/');
                     let pd = new ProgressBar(this);
                     this.setContentView(pd, new FrameLayout.LayoutParams(-2, -2, android.view.Gravity.CENTER));
-                    fetch('http://gank.avosapps.com/api/day/' + this.date)
-                        .then((response) => {
-                        return response.json();
-                    }).then((json) => {
-                        this.initPage(json.results);
-                    }).catch((e) => {
-                        console.error(e);
-                        Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
-                    });
+                    setTimeout(() => {
+                        fetch('http://gank.avosapps.com/api/day/' + this.date)
+                            .then((response) => {
+                            return response.json();
+                        }).then((json) => {
+                            this.initPage(json.results);
+                        }).catch((e) => {
+                            console.error(e);
+                            Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
+                        });
+                    }, 300);
                 }
                 initPage(mapData) {
                     let activity = this;
