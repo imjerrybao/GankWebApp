@@ -47,7 +47,7 @@ module com.linfaxin.gankwebapp {
                     console.error(e);
                     Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
                 })
-            }, 300);
+            }, 400);
 
         }
         
