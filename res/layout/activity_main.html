@@ -1,12 +1,10 @@
 <android.support.v4.widget.DrawerLayout
         android:id="drawerLayout">
-    <androidui.widget.PullRefreshLoadLayout
-            android:id="prll"
+    <android.support.v4.view.ViewPager
+            android:id="viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <ListView android:id="listView">
-        </ListView>
-    </androidui.widget.PullRefreshLoadLayout>
+    </android.support.v4.view.ViewPager>
 
     <!--侧滑内容-->
     <LinearLayout
@@ -19,7 +17,7 @@
             android:clickable="true"
             android:layout_height="match_parent">
         <TextView
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="12dp"
                 android:text="干货gank.io"
                 onClick="window.open('http://gank.io/')"
                 android:layout_width="wrap_content"
@@ -35,10 +33,10 @@
                 android:state_pressed="background:#ddd"
                 android:layout_width="wrap_content"
                 android:padding="8dp"
-                android:textColor="#666"
+                android:textColor="#999"
                 android:gravity="center"
-                android:text="欢迎Star&PR: "
-                android:drawableRight="@drawable/icon_github"></TextView>
+                android:text="欢迎Star&PR :)"
+                android:drawableTop="@drawable/icon_github"></TextView>
         <LinearLayout
                 android:layout_margin="12dp"
                 android:layout_height="match_parent"

@@ -12,16 +12,22 @@ module com.linfaxin.gankwebapp {
     import ImageView = android.widget.ImageView;
     import PhotoView = uk.co.senab.photoview.PhotoView;
     
-    export class PhotoActivity extends ActionBarActivity{
+    export class PhotoActivity extends Activity{
         protected onCreate(savedInstanceState?:android.os.Bundle):void {
             super.onCreate(savedInstanceState);
 
-            this.setTitle('图片')
+            this.setTitle('图片');
 
             let photo = new PhotoView(this);
 	        photo.setImageURI(this.getIntent().getStringExtra('url'));
             this.setContentView(photo);
 
+            let activity = this;
+            photo.setOnClickListener({
+                onClick(view:android.view.View){
+                    activity.finish();
+                }
+            })
         }
 
     }

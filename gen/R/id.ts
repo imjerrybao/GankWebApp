@@ -1,8 +1,7 @@
 module com.linfaxin.gankwebapp.R {
     export var id = {
         "drawerLayout": "drawerLayout",
-        "prll": "prll",
-        "listView": "listView",
+        "viewPager": "viewPager",
         "title": "title",
         "summary": "summary",
         "imageView": "imageView"
