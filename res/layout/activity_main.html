@@ -1,10 +1,50 @@
 <android.support.v4.widget.DrawerLayout
         android:id="drawerLayout">
-    <android.support.v4.view.ViewPager
-            android:id="viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+    <FrameLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+            <ImageView
+                    android:id="btn_menu"
+                    android:state_pressed="background:#ddd"
+                    android:layout_width="40dp"
+                    android:drawableAlpha="200"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_menu">
+            </ImageView>
+            <android.view.View
+                    android:background="#ddd"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"></android.view.View>
+            <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.linfaxin.gankwebapp.view.BorderBottomPagerIndicator
+                            android:id="indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                    </com.linfaxin.gankwebapp.view.BorderBottomPagerIndicator>
+            </HorizontalScrollView>
+        </LinearLayout>
+        <android.view.View
+                android:background="#ddd"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px">
+        </android.view.View>
+        <android.support.v4.view.ViewPager
+                android:id="viewPager"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+        <ProgressBar
+                android:id="progressBar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></ProgressBar>
+    </FrameLayout>
 
     <!--侧滑内容-->
     <LinearLayout

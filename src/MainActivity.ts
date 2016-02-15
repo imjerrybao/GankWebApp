@@ -22,7 +22,7 @@ module com.linfaxin.gankwebapp {
     import ViewPager = android.support.v4.view.ViewPager;
 
 
-    export class MainActivity extends ActionBarActivity {
+    export class MainActivity extends Activity {
         static AllDataTitle = new Map<string, string>();//<20016-01-01, 标题>
 
 
@@ -32,6 +32,7 @@ module com.linfaxin.gankwebapp {
             this.setTitle('首页');
             this.setContentView(R.layout.activity_main);
 
+            let progressBar = this.findViewById(R.id.progressBar);
             this.initAllDayTitle().then(()=>{
                 this.initViewPager();
             }, ()=>{
@@ -41,7 +42,8 @@ module com.linfaxin.gankwebapp {
             });
             
             let drawerLayout = <android.support.v4.widget.DrawerLayout>this.findViewById(R.id.drawerLayout);
-            activity.getActionBar().setActionLeft('', R.image.icon_menu, {
+            let btn_menu = this.findViewById(R.id.btn_menu);
+            btn_menu.setOnClickListener({
                 onClick : function(view){
                     if(drawerLayout.isDrawerOpen(android.view.Gravity.LEFT)){
                         drawerLayout.closeDrawers();
@@ -71,8 +73,15 @@ module com.linfaxin.gankwebapp {
         }
 
         private initViewPager(){
+            let progressBar = this.findViewById(R.id.progressBar);
+            (<ViewGroup>progressBar.getParent()).removeView(progressBar);
+            
             let viewPager = <ViewPager>this.findViewById(R.id.viewPager);
 	        viewPager.setAdapter(new view.GankPagerAdapter(viewPager));
+            
+            let indicator = <view.BorderBottomPagerIndicator>this.findViewById(R.id.indicator);
+            indicator.bindViewPager(viewPager);
+            indicator.checkFirstChild();
         }
 
     }

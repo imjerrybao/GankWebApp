@@ -8,7 +8,10 @@ var com;
             (function (R) {
                 R.id = {
                     "drawerLayout": "drawerLayout",
+                    "btn_menu": "btn_menu",
+                    "indicator": "indicator",
                     "viewPager": "viewPager",
+                    "progressBar": "progressBar",
                     "title": "title",
                     "summary": "summary",
                     "imageView": "imageView"
@@ -37,7 +40,7 @@ var com;
                         null,
                         null,
                         null,
-                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAABxUlEQVR42u3bvyuFURzH8Ut+lJIMSgalLMpCslmuGMWClAwWFq5JljszGOwGi0HKalAGi7AopUzXeBe6EsVyfJ5c/4Cu3M+396n3P3Bew/N8n/OcXEopR/8XmwAAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAAQAAL+tQ02pVVUwa10tqEFXgFn1nGKsI9XkBNCn3lKsVXQCWE7x1o0TwE5AgBcngLmAABdOAO2qEgxgze0taEQ9Bdn8Q9XgOAd0qV11a9qZmlaNTMJMwgQAAAQAAAQAAAQAAFTvAG1qQ52rB/VoVkldq3014AhwGuhL6HutEf568ycDngecOAFsBgQoOQEUAwKUnQCGAgIcuD2EjwNt/qsadgPIfmTaUx/mm3+vxpwHsV41b9p4rc+CmYT5FEEAAEBsAgAAEAAAUHCAFjWqZgyn4OyOQ151uwJMVI/23Ndn9ZuW1e/pPSnODcmfVXACWAp4HnDpBLAdEKDiBLAYEODKCaAzxbuoveX2FpQPhJD949TsOAf0p+8bhmXT7tSKamUSZhImAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAAAgAOq8L8lFlFv9HJHHAAAAAElFTkSuQmCC"
+                        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAeFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVyEiIAAAAJ3RSTlMAWHDo4NAF9fEzDQHuyqaKZ1dPQCH62MW9t62RfnheRCkWoJxGLBoc2TUIAAAAy0lEQVRo3u3XWa7CQAxEUSeEzsAUkjBPj8fg/e+QNVxLCCTqLKDroy1bZSIiIiLyaU3X5kT2MGQ5dWqewPtD6dwRBLQeMAMBCw+oyBd4wIbMUOVcbkAdmKKJEdfFGNl2ExORX9Pk23VBzG5/RuwcK0nC3QP2IODkAQUIOHrAiNwbD/g3YO9YVRuQDitn1r0xQ4ZcdDFFvlCquwxY9ldDLoVDqwNZFs/pmwvI2QM231QCz++usU3p3MmAnifskhHDfISM22QiIiIi8jkvE8irSqK9lGYAAAAASUVORK5CYII="
                     ]
                 };
                 var imageCache = {
@@ -97,7 +100,7 @@ var com;
             var R;
             (function (R) {
                 const _layout_data = {
-                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <android.support.v4.view.viewpager android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"viewPager\">\n    </android.support.v4.view.viewpager>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"12dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.open('https://github.com/linfaxin/GankWebApp')\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#999\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR :)\" android:drawabletop=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.open('https://github.com/linfaxin/AndroidUI-WebApp')\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
+                    "activity_main": "<android.support.v4.widget.drawerlayout id=\"drawerLayout\">\n    <framelayout>\n        <linearlayout android:layout_width=\"match_parent\" android:layout_height=\"40dp\">\n            <imageview android:state_pressed=\"background:#ddd\" android:layout_width=\"40dp\" android:drawablealpha=\"200\" android:layout_height=\"match_parent\" android:src=\"@drawable/icon_menu\" id=\"btn_menu\">\n            </imageview>\n            <android.view.view android:background=\"#ddd\" android:layout_width=\"1px\" android:layout_height=\"match_parent\"></android.view.view>\n            <horizontalscrollview android:scrollbars=\"none\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n                    <com.linfaxin.gankwebapp.view.borderbottompagerindicator android:layout_width=\"wrap_content\" android:layout_height=\"match_parent\" id=\"indicator\">\n                    </com.linfaxin.gankwebapp.view.borderbottompagerindicator>\n            </horizontalscrollview>\n        </linearlayout>\n        <android.view.view android:background=\"#ddd\" android:layout_margintop=\"40dp\" android:layout_width=\"match_parent\" android:layout_height=\"1px\">\n        </android.view.view>\n        <android.support.v4.view.viewpager android:layout_margintop=\"40dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" id=\"viewPager\">\n        </android.support.v4.view.viewpager>\n        <progressbar android:layout_gravity=\"center\" android:layout_width=\"wrap_content\" android:layout_height=\"wrap_content\" id=\"progressBar\"></progressbar>\n    </framelayout>\n\n    <!--侧滑内容-->\n    <linearlayout android:layout_gravity=\"left\" android:background=\"white\" android:padding=\"8dp\" android:orientation=\"vertical\" android:gravity=\"center\" android:layout_width=\"240dp\" android:clickable=\"true\" android:layout_height=\"match_parent\">\n        <textview android:layout_margintop=\"12dp\" android:text=\"干货gank.io\" onclick=\"window.open('http://gank.io/')\" android:layout_width=\"wrap_content\" android:textsize=\"20sp\"></textview>\n        <textview android:textcolor=\"#999\" android:text=\"第三方社区版WebApp\" android:layout_width=\"wrap_content\" android:textsize=\"12sp\"></textview>\n        <textview onclick=\"window.open('https://github.com/linfaxin/GankWebApp')\" android:layout_margintop=\"20dp\" android:state_pressed=\"background:#ddd\" android:layout_width=\"wrap_content\" android:padding=\"8dp\" android:textcolor=\"#999\" android:gravity=\"center\" android:text=\"欢迎Star&amp;PR :)\" android:drawabletop=\"@drawable/icon_github\"></textview>\n        <linearlayout android:layout_margin=\"12dp\" android:layout_height=\"match_parent\" android:layout_width=\"wrap_content\" android:gravity=\"bottom\">\n            <textview onclick=\"window.open('https://github.com/linfaxin/AndroidUI-WebApp')\" android:state_pressed=\"background:#ccc\" android:background=\"#eee\" android:padding=\"8dp\" android:textcolor=\"#999\" android:text=\"由AndroidUI框架驱动\"></textview>\n        </linearlayout>\n    </linearlayout>\n\n</android.support.v4.widget.drawerlayout>",
                     "day_detail_list_item": "<linearlayout android:background=\"white\" android:state_pressed=\"background:#ddd\" android:padding=\"8dp 8dp 8dp 24dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\" android:orientation=\"vertical\">\n    <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"14sp\" id=\"title\"></textview>\n    <textview android:layout_marginTop=\"6dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n</linearlayout>",
                     "main_list_item": "<linearlayout android:padding=\"8dp\" android:layout_width=\"match_parent\" android:layout_height=\"match_parent\">\n    <imageview android:scaleType=\"centerCrop\" android:layout_height=\"35vw\" android:layout_width=\"35vw\" id=\"imageView\"></imageview>\n    <linearlayout android:layout_marginLeft=\"12dp\" android:layout_height=\"match_parent\" android:gravity=\"center\" android:orientation=\"vertical\">\n        <textview android:maxLines=\"3\" android:ellipsize=\"end\" android:textSize=\"18sp\" id=\"title\"></textview>\n        <textview android:layout_marginTop=\"4dp\" android:textColor=\"#999\" android:textSize=\"12sp\" id=\"summary\"></textview>\n    </linearlayout>\n</linearlayout>"
                 };
@@ -258,15 +261,16 @@ var com;
     (function (linfaxin) {
         var gankwebapp;
         (function (gankwebapp) {
-            var ActionBarActivity = android.app.ActionBarActivity;
+            var Activity = android.app.Activity;
             var R = com.linfaxin.gankwebapp.R;
             var Toast = android.widget.Toast;
-            class MainActivity extends ActionBarActivity {
+            class MainActivity extends Activity {
                 onCreate(savedInstanceState) {
                     super.onCreate(savedInstanceState);
                     const activity = this;
                     this.setTitle('首页');
                     this.setContentView(R.layout.activity_main);
+                    let progressBar = this.findViewById(R.id.progressBar);
                     this.initAllDayTitle().then(() => {
                         this.initViewPager();
                     }, () => {
@@ -274,7 +278,8 @@ var com;
                         this.initViewPager();
                     });
                     let drawerLayout = this.findViewById(R.id.drawerLayout);
-                    activity.getActionBar().setActionLeft('', R.image.icon_menu, {
+                    let btn_menu = this.findViewById(R.id.btn_menu);
+                    btn_menu.setOnClickListener({
                         onClick: function (view) {
                             if (drawerLayout.isDrawerOpen(android.view.Gravity.LEFT)) {
                                 drawerLayout.closeDrawers();
@@ -302,8 +307,13 @@ var com;
                     });
                 }
                 initViewPager() {
+                    let progressBar = this.findViewById(R.id.progressBar);
+                    progressBar.getParent().removeView(progressBar);
                     let viewPager = this.findViewById(R.id.viewPager);
                     viewPager.setAdapter(new gankwebapp.view.GankPagerAdapter(viewPager));
+                    let indicator = this.findViewById(R.id.indicator);
+                    indicator.bindViewPager(viewPager);
+                    indicator.checkFirstChild();
                 }
             }
             MainActivity.AllDataTitle = new Map();
@@ -335,6 +345,178 @@ var com;
                 }
             }
             gankwebapp.PhotoActivity = PhotoActivity;
+        })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
+    })(linfaxin = com.linfaxin || (com.linfaxin = {}));
+})(com || (com = {}));
+var com;
+(function (com) {
+    var linfaxin;
+    (function (linfaxin) {
+        var gankwebapp;
+        (function (gankwebapp) {
+            var view;
+            (function (view) {
+                var View = android.view.View;
+                var LinearLayout = android.widget.LinearLayout;
+                var Gravity = android.view.Gravity;
+                var Color = android.graphics.Color;
+                var Paint = android.graphics.Paint;
+                var ViewPager = android.support.v4.view.ViewPager;
+                var RadioGroup = android.widget.RadioGroup;
+                var CompoundButton = android.widget.CompoundButton;
+                var RadioButton = android.widget.RadioButton;
+                class BorderBottomPagerIndicator extends RadioGroup {
+                    constructor(context, bindElement, defStyle) {
+                        super(context, bindElement, defStyle);
+                        this.mPosition = 0;
+                        this.mPositionOffset = 0;
+                        this.bottomLinePaint = new Paint();
+                        this.mBottomIndicatorLeft = 0;
+                        this.mBottomIndicatorRight = 0;
+                        this.colorNormal = 0xff999999;
+                        this.colorChecked = 0xff000000;
+                        this.colorBottomLine = 0xff666666;
+                        this.tempRect = new android.graphics.Rect();
+                        this.setOrientation(LinearLayout.HORIZONTAL);
+                        this.setGravity(Gravity.CENTER);
+                        this.setMinimumHeight(40 * this.getResources().getDisplayMetrics().density);
+                        this.bottomLinePaint.setColor(this.colorBottomLine);
+                        this.setWillNotDraw(false);
+                        super.setOnCheckedChangeListener({
+                            onCheckedChanged(group, checkedId) {
+                                group.invalidate();
+                                let cb = group.findViewById(checkedId);
+                                if (cb != null) {
+                                    if (group.viewPager != null) {
+                                        group.viewPager.setCurrentItem(group.indexOfChild(cb));
+                                    }
+                                }
+                                cb.getDrawingRect(group.tempRect);
+                                group.tempRect.left -= group.tempRect.width() / 2;
+                                group.tempRect.right += group.tempRect.width() / 2;
+                                cb.requestRectangleOnScreen(group.tempRect);
+                                if (group.onCheckedChangedListener != null) {
+                                    group.onCheckedChangedListener.onCheckedChanged(group, checkedId);
+                                }
+                            }
+                        });
+                    }
+                    addRadioBtns(...btns) {
+                        for (let s of btns) {
+                            if (s == null)
+                                continue;
+                            this.addRadioBtn(s);
+                        }
+                    }
+                    addRadioBtn(text, id = View.NO_ID) {
+                        let radioButton = new RadioButton(this.getContext());
+                        if (id == View.NO_ID) {
+                            id = text + radioButton.hashCode();
+                        }
+                        radioButton.setId(id);
+                        radioButton.setText(text);
+                        radioButton.setTextSize(15);
+                        radioButton.setButtonDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+                        let pad = this.getResources().getDisplayMetrics().density * 8;
+                        radioButton.setPadding(pad, pad, pad, pad);
+                        radioButton.setMinWidth(0);
+                        radioButton.setGravity(Gravity.CENTER);
+                        radioButton.setBackgroundDrawable(android.R.drawable.item_background);
+                        let textColor = new android.content.res.ColorStateList([[View.VIEW_STATE_CHECKED], []], [this.colorChecked, this.colorNormal]);
+                        radioButton.setTextColor(textColor);
+                        this.addView(radioButton, new RadioGroup.LayoutParams(0, -1, 1));
+                    }
+                    setOnCheckedChangeListener(listener) {
+                        this.onCheckedChangedListener = listener;
+                    }
+                    checkFirstChild() {
+                        for (let i = 0, size = this.getChildCount(); i < size; i++) {
+                            if (this.getChildAt(i) instanceof CompoundButton) {
+                                this.getChildAt(i).setChecked(true);
+                                return;
+                            }
+                        }
+                    }
+                    getBottomIndicatorRight() {
+                        return this.mBottomIndicatorRight;
+                    }
+                    getBottomIndicatorLeft() {
+                        return this.mBottomIndicatorLeft;
+                    }
+                    getBottomIndicatorWidth() {
+                        return this.mBottomIndicatorRight - this.mBottomIndicatorLeft;
+                    }
+                    onDraw(canvas) {
+                        let itemWidth = this.getWidth() / this.getChildCount();
+                        let leftOffset = 0;
+                        let linePadding = this.getResources().getDisplayMetrics().density * 6;
+                        try {
+                            let cb = this.getCurrentCB();
+                            let positionOffsetFix = this.mPosition - this.indexOfChild(cb) + this.mPositionOffset;
+                            leftOffset = cb.getLeft() + cb.getWidth() * positionOffsetFix;
+                            itemWidth = cb.getWidth();
+                            linePadding = ((itemWidth - cb.getPaint().measureText(cb.getText().toString())) / 2 - linePadding);
+                        }
+                        catch (e) {
+                        }
+                        this.mBottomIndicatorLeft = leftOffset + linePadding;
+                        this.mBottomIndicatorRight = leftOffset + itemWidth - linePadding;
+                        canvas.drawRect(this.mBottomIndicatorLeft, this.getHeight() - this.getResources().getDisplayMetrics().density * 4, this.mBottomIndicatorRight, this.getHeight(), this.bottomLinePaint);
+                    }
+                    getCBChild(index) {
+                        try {
+                            return this.getChildAt(index);
+                        }
+                        catch (e) {
+                            console.warn(e);
+                        }
+                        return null;
+                    }
+                    getCurrentCB() {
+                        try {
+                            return this.findViewById(this.getCheckedRadioButtonId());
+                        }
+                        catch (e) {
+                            console.warn(e);
+                        }
+                        return null;
+                    }
+                    bindViewPager(viewPager) {
+                        this.viewPager = viewPager;
+                        viewPager.addOnPageChangeListener(this);
+                        let adapter = viewPager.getAdapter();
+                        if (adapter) {
+                            for (let i = 0, count = adapter.getCount(); i < count; i++) {
+                                let title = adapter.getPageTitle(i);
+                                if (title)
+                                    this.addRadioBtn(title);
+                            }
+                        }
+                    }
+                    onPageSelected(position) {
+                        this.invalidate();
+                        try {
+                            this.getCBChild(position).setChecked(true);
+                        }
+                        catch (e) {
+                            console.warn(e);
+                        }
+                    }
+                    onPageScrolled(position, positionOffset, positionOffsetPixels) {
+                        this.mPosition = position;
+                        this.mPositionOffset = positionOffset;
+                        this.invalidate();
+                    }
+                    onPageScrollStateChanged(state) {
+                        if (state == ViewPager.SCROLL_STATE_IDLE) {
+                            this.mPositionOffset = 0;
+                            this.mPosition = this.viewPager.getCurrentItem();
+                            this.invalidate();
+                        }
+                    }
+                }
+                view.BorderBottomPagerIndicator = BorderBottomPagerIndicator;
+            })(view = gankwebapp.view || (gankwebapp.view = {}));
         })(gankwebapp = linfaxin.gankwebapp || (linfaxin.gankwebapp = {}));
     })(linfaxin = com.linfaxin || (com.linfaxin = {}));
 })(com || (com = {}));
@@ -457,6 +639,7 @@ var com;
                                 if (adapter.pageShowedFlags[position])
                                     return;
                                 adapter.pageShowedFlags[position] = true;
+                                adapter.getView(position);
                                 adapter.views[position].setFooterState(PullRefreshLoadLayout.State_Footer_Normal);
                                 adapter.views[position].setFooterState(PullRefreshLoadLayout.State_Footer_Loading);
                             },
@@ -466,14 +649,11 @@ var com;
                             }
                         });
                     }
-                    getCount() {
-                        return GankPagerAdapter.PagerCategory.length;
-                    }
-                    instantiateItem(container, position) {
+                    getView(position) {
                         let prll = this.views[position];
                         if (!prll) {
-                            prll = new PullRefreshLoadLayout(container.getContext());
-                            let listView = new ListView(container.getContext());
+                            prll = new PullRefreshLoadLayout(this.viewPager.getContext());
+                            let listView = new ListView(this.viewPager.getContext());
                             prll.addView(listView, -1, -1);
                             let isFuli = position == 0;
                             let adapter = isFuli ? new view_3.GankFuliListAdapter() : new view_3.GankCategoryAdapter();
@@ -484,6 +664,13 @@ var com;
                             prll.setRefreshLoadListener(new view_3.GankRefreshLoadListener(GankPagerAdapter.PagerCategory[position], adapter));
                             this.views[position] = prll;
                         }
+                        return prll;
+                    }
+                    getCount() {
+                        return GankPagerAdapter.PagerCategory.length;
+                    }
+                    instantiateItem(container, position) {
+                        let prll = this.getView(position);
                         container.addView(prll, 0);
                         return prll;
                     }

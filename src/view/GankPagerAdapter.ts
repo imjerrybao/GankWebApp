@@ -42,6 +42,7 @@ module com.linfaxin.gankwebapp.view {
                 onPageScrolled(position: number, positionOffset: number, positionOffsetPixels: number): void{
                     if(adapter.pageShowedFlags[position]) return;
                     adapter.pageShowedFlags[position] = true;
+                    adapter.getView(position);//ensure view created
                     //force trigger loading
                     adapter.views[position].setFooterState(PullRefreshLoadLayout.State_Footer_Normal);
                     adapter.views[position].setFooterState(PullRefreshLoadLayout.State_Footer_Loading);
@@ -52,17 +53,13 @@ module com.linfaxin.gankwebapp.view {
                 }
             });
         }
-
-        getCount():number {
-            return GankPagerAdapter.PagerCategory.length;
-        }
-
-        instantiateItem(container:ViewGroup, position:number):View {
+        
+        private getView(position:number):PullRefreshLoadLayout {
             let prll = this.views[position];
 
             if (!prll) {
-                prll = new PullRefreshLoadLayout(container.getContext());
-                let listView = new ListView(container.getContext());
+                prll = new PullRefreshLoadLayout(this.viewPager.getContext());
+                let listView = new ListView(this.viewPager.getContext());
                 prll.addView(listView, -1, -1);
 
                 let isFuli = position == 0;
@@ -77,6 +74,15 @@ module com.linfaxin.gankwebapp.view {
 
                 this.views[position] = prll;
             }
+            return prll;
+        }
+
+        getCount():number {
+            return GankPagerAdapter.PagerCategory.length;
+        }
+
+        instantiateItem(container:ViewGroup, position:number):View {
+            let prll = this.getView(position);
             container.addView(prll, 0);
             return prll;
         }
