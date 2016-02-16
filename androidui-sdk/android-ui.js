@@ -2,9 +2,9 @@ var androidui;
 (function (androidui) {
     androidui.sdk_version_info = `
 AndroidUI4Web: https://github.com/linfaxin/AndroidUI-WebApp
-version: 0.4.0
+version: 0.4.1
 release type: Pre-release
-release date: 2016-02-12
+release date: 2016-02-16
 `;
 })(androidui || (androidui = {}));
 var java;
@@ -4295,8 +4295,8 @@ var android;
                     displayMetrics.density = density;
                     displayMetrics.densityDpi = density * DisplayMetrics.DENSITY_DEFAULT;
                     displayMetrics.scaledDensity = density;
-                    displayMetrics.widthPixels = window.innerWidth * density;
-                    displayMetrics.heightPixels = window.innerHeight * density;
+                    displayMetrics.widthPixels = document.documentElement.offsetWidth * density;
+                    displayMetrics.heightPixels = document.documentElement.offsetHeight * density;
                     return displayMetrics;
                 }
                 getObjectRef(refString) {
@@ -4580,6 +4580,36 @@ var android;
         var Rect = android.graphics.Rect;
         var ViewConfiguration = android.view.ViewConfiguration;
         const tempBound = new Rect();
+        const ID_FixID_Cache = [];
+        function fixEventId(e) {
+            for (let i = 0, length = e.changedTouches.length; i < length; i++) {
+                fixTouchId(e.changedTouches[i]);
+            }
+            for (let i = 0, length = e.touches.length; i < length; i++) {
+                fixTouchId(e.touches[i]);
+            }
+            if (e.type == 'touchend' || e.type == 'touchcancel') {
+                ID_FixID_Cache[e.changedTouches[0].id_fix] = null;
+            }
+        }
+        function fixTouchId(touch) {
+            let originID = touch['identifier'];
+            if (originID <= 10) {
+                touch.id_fix = originID;
+                ID_FixID_Cache[originID] = originID;
+                return;
+            }
+            touch.id_fix = ID_FixID_Cache.indexOf(originID);
+            if (touch.id_fix >= 0)
+                return;
+            for (let i = 0, length = ID_FixID_Cache.length + 1; i < length; i++) {
+                if (ID_FixID_Cache[i] == null) {
+                    ID_FixID_Cache[i] = originID;
+                    touch.id_fix = i;
+                    return;
+                }
+            }
+        }
         class MotionEvent {
             constructor() {
                 this.mAction = 0;
@@ -4607,7 +4637,7 @@ var android;
                 newEv.mDownTime = downTime;
                 newEv.mEventTime = eventTime;
                 let touch = {
-                    identifier: 0,
+                    id_fix: 0,
                     target: null,
                     screenX: x,
                     screenY: y,
@@ -4621,14 +4651,15 @@ var android;
             }
             initWithTouch(event, baseAction, windowBound = new Rect()) {
                 let e = event;
+                fixEventId(e);
                 let now = android.os.SystemClock.uptimeMillis();
                 let action = baseAction;
                 let actionIndex = -1;
                 let activeTouch = e.changedTouches[0];
                 this._activeTouch = activeTouch;
-                let activePointerId = activeTouch.identifier;
+                let activePointerId = activeTouch.id_fix;
                 for (let i = 0, length = e.touches.length; i < length; i++) {
-                    if (e.touches[i].identifier === activePointerId) {
+                    if (e.touches[i].id_fix === activePointerId) {
                         actionIndex = i;
                         MotionEvent.IdIndexCache.set(activePointerId, i);
                         break;
@@ -4708,7 +4739,7 @@ var android;
                 this.mAction = MotionEvent.ACTION_SCROLL;
                 this.mActivePointerId = 0;
                 let touch = {
-                    identifier: 0,
+                    id_fix: 0,
                     target: null,
                     screenX: e.screenX,
                     screenY: e.screenY,
@@ -4753,11 +4784,11 @@ var android;
                 return this.mTouchingPointers.length;
             }
             getPointerId(pointerIndex) {
-                return this.mTouchingPointers[pointerIndex].identifier;
+                return this.mTouchingPointers[pointerIndex].id_fix;
             }
             findPointerIndex(pointerId) {
                 for (let i = 0, length = this.mTouchingPointers.length; i < length; i++) {
-                    if (this.mTouchingPointers[i].identifier === pointerId) {
+                    if (this.mTouchingPointers[i].id_fix === pointerId) {
                         return i;
                     }
                 }
@@ -4777,12 +4808,12 @@ var android;
             }
             getHistoricalX(pointerIndex, pos) {
                 let density = android.content.res.Resources.getDisplayMetrics().density;
-                let moveHistory = MotionEvent.TouchMoveRecord.get(this.mTouchingPointers[pointerIndex].identifier);
+                let moveHistory = MotionEvent.TouchMoveRecord.get(this.mTouchingPointers[pointerIndex].id_fix);
                 return (moveHistory[pos].pageX) * density + this.mXOffset;
             }
             getHistoricalY(pointerIndex, pos) {
                 let density = android.content.res.Resources.getDisplayMetrics().density;
-                let moveHistory = MotionEvent.TouchMoveRecord.get(this.mTouchingPointers[pointerIndex].identifier);
+                let moveHistory = MotionEvent.TouchMoveRecord.get(this.mTouchingPointers[pointerIndex].id_fix);
                 return (moveHistory[pos].pageY) * density + this.mYOffset;
             }
             getHistoricalEventTime(...args) {
@@ -4879,7 +4910,7 @@ var android;
                 }
                 ev.mAction = newAction;
                 ev.mTouchingPointers = this.mTouchingPointers.filter((item) => {
-                    return newPointerIds.indexOf(item.identifier) >= 0;
+                    return newPointerIds.indexOf(item.id_fix) >= 0;
                 });
                 return ev;
             }
@@ -11501,6 +11532,7 @@ var android;
             updateMatrix() {
                 const info = this.mTransformationInfo;
                 if (info == null) {
+                    this._syncMatrixToElement();
                     return;
                 }
                 if (info.mMatrixDirty) {
@@ -11520,6 +11552,7 @@ var android;
                     info.mMatrixIsIdentity = info.mMatrix.isIdentity();
                     info.mInverseMatrixDirty = true;
                 }
+                this._syncMatrixToElement();
             }
             getRotation() {
                 return this.mTransformationInfo != null ? this.mTransformationInfo.mRotation : 0;
@@ -12980,6 +13013,9 @@ var android;
                     this.mPrivateFlags |= View.PFLAG_HAS_BOUNDS;
                     if (sizeChanged) {
                         if ((this.mPrivateFlags & View.PFLAG_PIVOT_EXPLICITLY_SET) == 0) {
+                            if (this.mTransformationInfo != null) {
+                                this.mTransformationInfo.mMatrixDirty = true;
+                            }
                         }
                         this.sizeChange(newWidth, newHeight, oldWidth, oldHeight);
                     }
@@ -14744,12 +14780,22 @@ var android;
                     bind.style.top = (top - pScrollY) / density + 'px';
                     bind.style.width = width / density + 'px';
                     bind.style.height = height / density + 'px';
+                    this._syncMatrixToElement();
                 }
                 if (this instanceof view_2.ViewGroup) {
                     const group = this;
                     for (var i = 0, count = group.getChildCount(); i < count; i++) {
                         group.getChildAt(i)._syncBoundAndScrollToElement();
                     }
+                }
+            }
+            _syncMatrixToElement() {
+                let matrix = this.getMatrix();
+                let v = View.TempMatrixValue;
+                matrix.getValues(v);
+                let transfrom = `matrix(${v[Matrix.MSCALE_X]}, ${-v[Matrix.MSKEW_X]}, ${-v[Matrix.MSKEW_Y]}, ${v[Matrix.MSCALE_Y]}, ${v[Matrix.MTRANS_X]}, ${v[Matrix.MTRANS_Y]})`;
+                if (this._lastSyncTransform != transfrom) {
+                    this._lastSyncTransform = this.bindElement.style.transform = this.bindElement.style.webkitTransform = transfrom;
                 }
             }
             syncVisibleToElement() {
@@ -15075,6 +15121,7 @@ var android;
         View.TEXT_ALIGNMENT_DEFAULT = View.TEXT_ALIGNMENT_GRAVITY;
         View.TEXT_ALIGNMENT_RESOLVED_DEFAULT = View.TEXT_ALIGNMENT_GRAVITY;
         View.AndroidViewProperty = 'AndroidView';
+        View.TempMatrixValue = new Array(9);
         view_2.View = View;
         (function (View) {
             class TransformationInfo {
@@ -42273,7 +42320,7 @@ var android;
                     return this.mScaleType.toString();
                 });
                 a.addAttr('drawableAlpha', (value) => {
-                    this.setAlpha(a.parseNumber(value, this.mAlpha));
+                    this.setImageAlpha(a.parseNumber(value, this.mAlpha));
                 }, () => {
                     return this.mAlpha;
                 });
@@ -42712,9 +42759,6 @@ var android;
                 return this.mAlpha;
             }
             setImageAlpha(alpha) {
-                this.setAlpha(alpha);
-            }
-            setAlpha(alpha) {
                 alpha &= 0xFF;
                 if (this.mAlpha != alpha) {
                     this.mAlpha = alpha;
@@ -51766,6 +51810,12 @@ var android;
                     }
                 };
                 this.bindElement.appendChild(this.iFrameElement);
+                this.bindElement.style['webkitOverflowScrolling'] = this.bindElement.style['overflowScrolling'] = 'touch';
+                this.bindElement.style.overflowY = 'scroll';
+            }
+            onTouchEvent(event) {
+                event[android.view.ViewRootImpl.ContinueEventToDom] = true;
+                return super.onTouchEvent(event) || true;
             }
             loadUrl(url) {
                 if (this.mClient)

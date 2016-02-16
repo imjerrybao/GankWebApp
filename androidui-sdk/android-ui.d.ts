@@ -3415,6 +3415,9 @@ declare module android.view {
         private _lastSyncScrollX;
         private _lastSyncScrollY;
         protected _syncBoundAndScrollToElement(): void;
+        private static TempMatrixValue;
+        private _lastSyncTransform;
+        protected _syncMatrixToElement(): void;
         syncVisibleToElement(): void;
         syncDrawStateToElement(): void;
         private _initAttrObserver();
@@ -7803,7 +7806,6 @@ declare module android.widget {
         getBaselineAlignBottom(): boolean;
         getImageAlpha(): number;
         setImageAlpha(alpha: number): void;
-        setAlpha(alpha: number): void;
         private applyColorMod();
         setVisibility(visibility: number): void;
         protected onAttachedToWindow(): void;
@@ -9738,6 +9740,7 @@ declare module android.webkit {
         private mClient;
         constructor(context: android.content.Context, bindElement?: HTMLElement, defStyle?: any);
         private initIFrameElement();
+        onTouchEvent(event: android.view.MotionEvent): boolean;
         loadUrl(url: string): void;
         loadData(data: string): void;
         evaluateJavascript(script: string): any;
