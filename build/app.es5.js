@@ -882,7 +882,7 @@ var com;
                         var _this11 = _possibleConstructorReturn(this, Object.getPrototypeOf(GankPagerAdapter).call(this));
 
                         _this11.views = [];
-                        _this11.pageShowedFlags = [];
+                        _this11.pageShowedFlags = [true];
                         _this11.viewPager = viewPager;
                         var adapter = _this11;
                         viewPager.addOnPageChangeListener({

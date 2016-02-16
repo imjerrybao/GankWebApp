@@ -30,7 +30,7 @@ module com.linfaxin.gankwebapp.view {
         static PagerTitle = ['每日', 'Android', 'iOS', 'App', '前端', '瞎推荐', '拓展资源', '休息视频'];
 
         views:Array<PullRefreshLoadLayout> = [];
-        pageShowedFlags:Array<boolean> = [];
+        pageShowedFlags:Array<boolean> = [true];//第一页默认已显示
         
         viewPager:ViewPager;
         constructor(viewPager:ViewPager){

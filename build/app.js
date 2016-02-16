@@ -638,7 +638,7 @@ var com;
                     constructor(viewPager) {
                         super();
                         this.views = [];
-                        this.pageShowedFlags = [];
+                        this.pageShowedFlags = [true];
                         this.viewPager = viewPager;
                         const adapter = this;
                         viewPager.addOnPageChangeListener({
