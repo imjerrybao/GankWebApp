@@ -47,7 +47,7 @@ module com.linfaxin.gankwebapp {
                     console.error(e);
                     Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
                 })
-            }, 400);
+            }, 350);
 
         }
         
@@ -137,7 +137,7 @@ module com.linfaxin.gankwebapp {
             (<TextView>convertView.findViewById(R.id.summary)).setText(item.who);
             convertView.setOnClickListener({
                 onClick(){
-                    window.open(item.url);
+                    location.href = item.url;
                 }
             });
             return convertView;

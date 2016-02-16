@@ -166,7 +166,7 @@ var com;
                             console.error(e);
                             Toast.makeText(activity, '载入失败', Toast.LENGTH_SHORT).show();
                         });
-                    }, 400);
+                    }, 350);
                 }
                 initPage(mapData) {
                     let activity = this;
@@ -248,7 +248,7 @@ var com;
                     convertView.findViewById(gankwebapp.R.id.summary).setText(item.who);
                     convertView.setOnClickListener({
                         onClick() {
-                            window.open(item.url);
+                            location.href = item.url;
                         }
                     });
                     return convertView;
@@ -554,7 +554,7 @@ var com;
                         convertView.findViewById(R.id.imageView).setVisibility(View.GONE);
                         convertView.setOnClickListener({
                             onClick(view) {
-                                window.open(item.url);
+                                location.href = item.url;
                             }
                         });
                         return convertView;

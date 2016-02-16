@@ -39,7 +39,7 @@ module com.linfaxin.gankwebapp.view {
             (<ImageView>convertView.findViewById(R.id.imageView)).setVisibility(View.GONE);
             convertView.setOnClickListener({
                 onClick(view:View){
-                    window.open(item.url);
+                    location.href = item.url;
                 }
             });
             return convertView;
